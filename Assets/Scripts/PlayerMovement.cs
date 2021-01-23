@@ -58,11 +58,6 @@ public class PlayerMovement : MonoBehaviourPun, IPunObservable
             Cursor.visible = true;
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
     }
 
     private void LateUpdate()

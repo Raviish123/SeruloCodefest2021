@@ -11,6 +11,7 @@ public class PlayerResistance : MonoBehaviourPun
     public Slider resistanceSlider;
     public Button infectButton;
 
+    private bool paused = false;
     private TheGameManager tgm;
     private float resistance;
 
@@ -48,10 +49,26 @@ public class PlayerResistance : MonoBehaviourPun
 
         resistanceSlider.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.red;
         var multiplier = GetComponent<PlayerMovement>().isRunning ? 6 : 2;
-        resistance -= Time.deltaTime * multiplier;
+        if (!paused)
+        {
+            resistance -= Time.deltaTime * multiplier;
+        }
+        
         resistance = Mathf.Clamp(resistance, -1f, 100f);
         resistanceSlider.value = resistance;
         if (resistance <= 0) PhotonNetwork.LocalPlayer.SetScore(1);
+    }
+
+    private IEnumerator pausedRoutine(int seconds)
+    {
+        paused = true;
+        yield return new WaitForSeconds(seconds);
+        paused = false;
+    }
+
+    public void StartPausedRoutine(int seconds)
+    {
+        StartCoroutine(pausedRoutine(seconds));
     }
 
     private int CheckToInfect()

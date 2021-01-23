@@ -13,6 +13,7 @@ public class PlayerOrbCollector : MonoBehaviourPun
             if (photonView.IsMine)
             {
                 GetComponent<PlayerResistance>().IncreaseResistance(20);
+                FindObjectOfType<ShopManager>().ChangeCurrency(25);
                 //GetComponent<AudioSource>().Play();
             }
 

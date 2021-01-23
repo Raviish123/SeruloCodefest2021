@@ -10,11 +10,12 @@ public class MenuManager : MonoBehaviourPunCallbacks
 
     public GameObject mainMenuPanel;
     public GameObject joinOrCreatePanel;
-    // public GameObject createOptionsPanel;
+    public GameObject enterNamePanel;
 
     public Text status;
 
     public InputField roomCodeField;
+    public InputField nameField;
 
     public Button playButton;
     public Button joinButton;
@@ -25,7 +26,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
     {
         mainMenuPanel.SetActive(false);
         joinOrCreatePanel.SetActive(false);
-        // createOptionsPanel.SetActive(false);
+        enterNamePanel.SetActive(false);
         switch (panelName)
         {
             case "Main":
@@ -34,9 +35,9 @@ public class MenuManager : MonoBehaviourPunCallbacks
             case "JOC":
                 joinOrCreatePanel.SetActive(true);
                 break;
-            /*case "CO":
-                createOptionsPanel.SetActive(true);
-                break;*/
+            case "EN":
+                enterNamePanel.SetActive(true);
+                break;
             default:
                 break;
         }
@@ -70,6 +71,13 @@ public class MenuManager : MonoBehaviourPunCallbacks
 
     public void Play()
     {
+        ActivatePanel("EN");
+    }
+
+    public void Next()
+    {
+        if (nameField.text == "") return;
+        PhotonNetwork.LocalPlayer.NickName = nameField.text;
         ActivatePanel("JOC");
     }
 
@@ -118,7 +126,6 @@ public class MenuManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        PhotonNetwork.NickName = "Player" + PhotonNetwork.LocalPlayer.ActorNumber.ToString();
         CharacterSwitcher.characterName = PhotonNetwork.IsMasterClient ? "Remy" : "Leonard";
         PhotonNetwork.LoadLevel("Lobby");
     }

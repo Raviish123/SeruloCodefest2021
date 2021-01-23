@@ -13,7 +13,7 @@ public class OrbMAnager : MonoBehaviourPun
     {
         if (!PhotonNetwork.IsMasterClient) Destroy(this);
 
-        InvokeRepeating("SpawnOrb", 0, 1f);
+        InvokeRepeating("SpawnOrb", 0, 0.25f);
 
     }
 

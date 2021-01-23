@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 495c9e2a934bcc640a8d7427b13cb680
+guid: a8fa5781cb98ccb4b901c051f0c04149
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Orbitron
+  fontName: 28 Days Later
   fontNames:
-  - Orbitron
+  - 28 Days Later
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
