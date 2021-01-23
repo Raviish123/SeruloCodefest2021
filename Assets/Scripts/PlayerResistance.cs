@@ -72,6 +72,13 @@ public class PlayerResistance : MonoBehaviourPun
         return actorNr;
     }
 
+    public void IncreaseResistance(int amount)
+    {
+        if (PhotonNetwork.LocalPlayer.GetScore() == 1) return;
+        resistance += amount;
+        resistance = Mathf.Clamp(resistance, -1f, 100);
+    }
+
     private void Infect(int actorNr)
     {
         PhotonNetwork.LocalPlayer.SetScore(0);

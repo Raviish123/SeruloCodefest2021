@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 239792065}
   - component: {fileID: 239792064}
   - component: {fileID: 239792063}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1018,6 +1018,7 @@ GameObject:
   - component: {fileID: 1285207145}
   - component: {fileID: 1285207146}
   - component: {fileID: 1285207148}
+  - component: {fileID: 1285207149}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1091,6 +1092,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d70f9f1a37d9a045bcd5608e16bcc77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1285207149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285207144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29fd7f25c02ea814282944beeef28585, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPos: {x: -98, y: 0, z: -98}
+  endPos: {x: 148, y: 0, z: 148}
+  yPos: 3
 --- !u!1 &1501319677
 GameObject:
   m_ObjectHideFlags: 0
