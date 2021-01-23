@@ -91,7 +91,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
         joinButton.interactable = false;
         createButton.interactable = false;
         RoomOptions roomOptions = new RoomOptions();
-        roomOptions.IsOpen = false;
+        roomOptions.IsOpen = true;
         roomOptions.MaxPlayers = 2;
         PhotonNetwork.CreateRoom(GenerateRandom6DigitNumber(), roomOptions);
     }
@@ -99,7 +99,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         RoomOptions roomOptions = new RoomOptions();
-        roomOptions.IsOpen = false;
+        roomOptions.IsOpen = true;
         roomOptions.MaxPlayers = 2;
         PhotonNetwork.CreateRoom(GenerateRandom6DigitNumber(), roomOptions);
     }
@@ -118,8 +118,8 @@ public class MenuManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        print(PhotonNetwork.CurrentRoom.Name);
-        PhotonNetwork.NickName = PhotonNetwork.LocalPlayer.ActorNumber.ToString();
+        PhotonNetwork.NickName = "Player" + PhotonNetwork.LocalPlayer.ActorNumber.ToString();
+        CharacterSwitcher.characterName = PhotonNetwork.IsMasterClient ? "Remy" : "Leonard";
         PhotonNetwork.LoadLevel("Lobby");
     }
 }
