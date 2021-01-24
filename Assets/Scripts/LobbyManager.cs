@@ -19,6 +19,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public Text infoText;
 
+    public Text characterText;
+
+    public Button remy;
+    public Button leonard;
+    public Button shae;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +48,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     private void UpdatePlayerList()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 5; i++)
         {
             playerList.GetChild(i).gameObject.GetComponent<Text>().text = "";
         }
@@ -69,10 +76,33 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         infoText.gameObject.SetActive(false);
     }
 
+    void UpdateCharacter()
+    {
+        characterText.text = "Current Character: " + CharacterSwitcher.characterName;
+        remy.interactable = false;
+        leonard.interactable = false;
+        shae.interactable = false;
+        switch (CharacterSwitcher.characterName)
+        {
+            case "Remy":
+                remy.interactable = true;
+                break;
+            case "Leonard":
+                leonard.interactable = true;
+                break;
+            case "Shae":
+                shae.interactable = true;
+                break;
+            default:
+                break;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         UpdatePlayerList();
+        UpdateCharacter();
         if (Input.GetKeyDown(KeyCode.Return) && startButton.interactable)
         {
             StartGame();

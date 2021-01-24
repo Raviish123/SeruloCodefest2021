@@ -36,7 +36,7 @@ public class PlayerResistance : MonoBehaviourPun
         if (PhotonNetwork.LocalPlayer.GetScore() == 1)
         {
             resistanceSlider.value = 0;
-            resistance = 0;
+            resistance = 50;
             resistanceSlider.gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.green;
             int actorNr = CheckToInfect();
             infectButton.interactable = actorNr != -1;
@@ -56,7 +56,10 @@ public class PlayerResistance : MonoBehaviourPun
         
         resistance = Mathf.Clamp(resistance, -1f, 100f);
         resistanceSlider.value = resistance;
-        if (resistance <= 0) PhotonNetwork.LocalPlayer.SetScore(1);
+        if (resistance <= 0) {
+            print("hiiiii");
+            PhotonNetwork.LocalPlayer.SetScore(1);
+        }
     }
 
     private IEnumerator pausedRoutine(int seconds)
@@ -98,8 +101,7 @@ public class PlayerResistance : MonoBehaviourPun
 
     private void Infect(int actorNr)
     {
-        PhotonNetwork.LocalPlayer.SetScore(0);
-        resistance = 50;
+        Disinfect();
         photonView.RPC("SendInfection", PhotonNetwork.CurrentRoom.GetPlayer(actorNr));
     }
 
@@ -111,6 +113,8 @@ public class PlayerResistance : MonoBehaviourPun
 
     public void Disinfect()
     {
+        resistance = 50;
+        print("hi");
         PhotonNetwork.LocalPlayer.SetScore(0);
     }
 }

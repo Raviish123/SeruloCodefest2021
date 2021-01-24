@@ -12,15 +12,24 @@ public class MenuManager : MonoBehaviourPunCallbacks
     public GameObject joinOrCreatePanel;
     public GameObject enterNamePanel;
     public GameObject optPanel;
+    public GameObject createOptsPanel;
+    public GameObject howToPanel;
 
     public Text status;
+
+    public Dropdown dropdown;
+
+    public Slider volume;
 
     public InputField roomCodeField;
     public InputField nameField;
 
     public Button playButton;
     public Button joinButton;
+    public Button backButton;
+    public Button realCreateButton;
     public Button createButton;
+
 
 
     public void ActivatePanel(string panelName)
@@ -29,6 +38,8 @@ public class MenuManager : MonoBehaviourPunCallbacks
         joinOrCreatePanel.SetActive(false);
         enterNamePanel.SetActive(false);
         optPanel.SetActive(false);
+        howToPanel.SetActive(false);
+        createOptsPanel.SetActive(false);
         switch (panelName)
         {
             case "Main":
@@ -42,6 +53,12 @@ public class MenuManager : MonoBehaviourPunCallbacks
                 break;
             case "Opt":
                 optPanel.SetActive(true);
+                break;
+            case "COP":
+                createOptsPanel.SetActive(true);
+                break;
+            case "HTP":
+                howToPanel.SetActive(true);
                 break;
             default:
                 break;
@@ -64,7 +81,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
         {
             status.text = "Connecting...";
             PhotonNetwork.ConnectUsingSettings();
-            PhotonNetwork.GameVersion = "0.1.0";
+            PhotonNetwork.GameVersion = "1.0.0";
         }
     }
 
@@ -101,11 +118,11 @@ public class MenuManager : MonoBehaviourPunCallbacks
 
     public void Create()
     {
-        joinButton.interactable = false;
-        createButton.interactable = false;
+        backButton.interactable = false;
+        realCreateButton.interactable = false;
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.IsOpen = true;
-        roomOptions.MaxPlayers = 2;
+        roomOptions.MaxPlayers = byte.Parse(dropdown.captionText.text.Split(' ')[0]);
         PhotonNetwork.CreateRoom(GenerateRandom6DigitNumber(), roomOptions);
     }
 
@@ -113,7 +130,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
     {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.IsOpen = true;
-        roomOptions.MaxPlayers = 2;
+        roomOptions.MaxPlayers = byte.Parse(dropdown.captionText.text.Split(' ')[0]); ;
         PhotonNetwork.CreateRoom(GenerateRandom6DigitNumber(), roomOptions);
     }
 
@@ -133,5 +150,11 @@ public class MenuManager : MonoBehaviourPunCallbacks
     {
         CharacterSwitcher.characterName = PhotonNetwork.IsMasterClient ? "Remy" : "Leonard";
         PhotonNetwork.LoadLevel("Lobby");
+    }
+
+    private void Update()
+    {
+        VolumeStorer.volume = volume.value;
+        FindObjectOfType<AudioSource>().volume = VolumeStorer.volume;
     }
 }
