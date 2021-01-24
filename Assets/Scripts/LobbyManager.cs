@@ -53,7 +53,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        UpdatePlayerList();
         if (PhotonNetwork.IsMasterClient)
         {
             if (PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers)
@@ -66,7 +65,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        UpdatePlayerList();
         startButton.interactable = false;
         infoText.gameObject.SetActive(false);
     }
@@ -74,6 +72,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
+        UpdatePlayerList();
         if (Input.GetKeyDown(KeyCode.Return) && startButton.interactable)
         {
             StartGame();

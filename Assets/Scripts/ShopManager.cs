@@ -35,7 +35,7 @@ public class ShopManager : MonoBehaviourPun
 
     void Income()
     {
-        ChangeCurrency(50);
+        ChangeCurrency(75);
     }
 
     public bool ChangeCurrency(int currencyToAdd)
@@ -73,6 +73,11 @@ public class ShopManager : MonoBehaviourPun
             Cursor.lockState = shopPanel.activeSelf ? CursorLockMode.Locked : CursorLockMode.None;
             Cursor.visible = shopPanel.activeSelf ? false : true;
             shopPanel.SetActive(!shopPanel.activeSelf);
+        }
+        var ttM = FindObjectOfType<TooltipMouse>();
+        if (ttM != null)
+        {
+            FindObjectOfType<TooltipMouse>().gameObject.SetActive(shopPanel.activeSelf);
         }
     }
 }

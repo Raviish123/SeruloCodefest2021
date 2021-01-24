@@ -29,7 +29,7 @@ public class OrbMAnager : MonoBehaviourPun
         rayPosition.y = -10;
         RaycastHit hit;
         Physics.Raycast(rayPosition, Vector3.up, out hit, 20f, LayerMask.GetMask("Ground"));
-        orbPosition.y = hit.point.y + 2;
+        orbPosition.y = hit.point.y + yPos;
         PhotonNetwork.Instantiate("Orb", orbPosition, Quaternion.identity);
     }
 

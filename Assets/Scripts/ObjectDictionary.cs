@@ -11,13 +11,13 @@ public class ObjectDictionary : MonoBehaviour
         switch (objectName)
         {
             case "Vaccine":
-                cost = 1000;
+                cost = 500;
                 break;
             case "Carrot":
                 cost = 300;
                 break;
             case "Apple":
-                cost = 500;
+                cost = 375;
                 break;
             default:
                 break;

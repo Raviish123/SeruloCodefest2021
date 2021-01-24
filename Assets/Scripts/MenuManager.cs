@@ -11,6 +11,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
     public GameObject mainMenuPanel;
     public GameObject joinOrCreatePanel;
     public GameObject enterNamePanel;
+    public GameObject optPanel;
 
     public Text status;
 
@@ -22,11 +23,12 @@ public class MenuManager : MonoBehaviourPunCallbacks
     public Button createButton;
 
 
-    private void ActivatePanel(string panelName)
+    public void ActivatePanel(string panelName)
     {
         mainMenuPanel.SetActive(false);
         joinOrCreatePanel.SetActive(false);
         enterNamePanel.SetActive(false);
+        optPanel.SetActive(false);
         switch (panelName)
         {
             case "Main":
@@ -37,6 +39,9 @@ public class MenuManager : MonoBehaviourPunCallbacks
                 break;
             case "EN":
                 enterNamePanel.SetActive(true);
+                break;
+            case "Opt":
+                optPanel.SetActive(true);
                 break;
             default:
                 break;
