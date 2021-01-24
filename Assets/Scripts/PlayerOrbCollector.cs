@@ -15,7 +15,7 @@ public class PlayerOrbCollector : MonoBehaviourPun
                 GetComponent<PlayerResistance>().IncreaseResistance(20);
                 FindObjectOfType<ShopManager>().ChangeCurrency(25);
                 if (PhotonNetwork.IsMasterClient) FindObjectOfType<OrbMAnager>().ReduceOrb();
-                //GetComponent<AudioSource>().Play();
+                GetComponent<AudioSource>().Play();
             }
 
             Destroy(other.gameObject);
